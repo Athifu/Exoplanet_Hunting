@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exoplanet Transit Analyzer - AI-Powered</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      background: radial-gradient(ellipse at bottom, #0f0c29 0%, #000000 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 3rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #38bdf8;
+      margin-bottom: 1rem;
+    }
+    textarea {
+      width: 90%;
+      max-width: 600px;
+      height: 150px;
+      font-size: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      border: none;
+      resize: vertical;
+      margin-bottom: 1rem;
+      font-family: monospace;
+    }
+    button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background-color: #0ea5e9;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      transition: background-color 0.3s ease;
+      margin-bottom: 2rem;
+    }
+    button:hover {
+      background-color: #0284c7;
+    }
+    #result {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #38bdf8;
+      white-space: pre-wrap;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    canvas {
+      max-width: 600px;
+      width: 90%;
+      height: 250px;
+      background-color: #111827;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #0ea5e9aa;
+      margin-bottom: 3rem;
+    }
+    footer {
+      margin-top: auto;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>AI-Powered Exoplanet Transit Analyzer</h1>
+  <p>Paste raw transit flux values below (comma, space, or newline separated).</p>
+  <textarea id="transitData" placeholder="Example: 1.000, 0.995, 0.980, 0.990, 1.005, 1.000"></textarea>
+  <button id="analyzeBtn">Analyze Transit Data</button>
+
+  <div id="result"></div>
+  <canvas id="transitChart" style="display:none;"></canvas>
+
+  <footer>
+    &copy; NASA Exoplanet Transit Analyzer - Instant AI Interpretation
+  </footer>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    function analyzeTransit(dataArr) {
+      if (dataArr.length < 5) return {success:false, message:'Please enter at least 5 data points.'};
+
+      const fluxValues = dataArr.map(Number).filter(n => !isNaN(n));
+      if (fluxValues.length !== dataArr.length) {
+        return {success:false, message:'Invalid input: please enter only numbers separated by commas, spaces or newlines.'};
+      }
+
+      const baseline = fluxValues.reduce((a,b) => a+b, 0) / fluxValues.length;
+      const minFlux = Math.min(...fluxValues);
+      const dipDepth = baseline - minFlux;
+      const transitThreshold = 0.01; // 1%
+
+      if (dipDepth >= transitThreshold) {
+        return {
+          success:true,
+          message: `🚀 Possible Exoplanet Transit Detected!\nBaseline Flux: ${baseline.toFixed(3)}\nMinimum Flux: ${minFlux.toFixed(3)}\nDip Depth: ${(dipDepth*100).toFixed(2)}%`
+        };
+      } else {
+        return {success:true, message: 'No significant transit detected in the data.'};
+      }
+    }
+
+    let chartInstance = null;
+
+    function plotChart(data) {
+      const ctx = document.getElementById('transitChart').getContext('2d');
+      if (chartInstance) {
+        chartInstance.destroy();
+      }
+
+      chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: data.map((_, i) => `Pt ${i+1}`),
+          datasets: [{
+            label: 'Transit Flux',
+            data: data,
+            borderColor: '#0ea5e9',
+            backgroundColor: 'rgba(14,165,233,0.3)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            borderWidth: 2,
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: Math.min(...data) * 0.95,
+              max: Math.max(...data) * 1.05,
+              grid: {
+                color: '#222',
+              },
+              ticks: {
+                color: 'white',
+                font: { size: 14 }
+              }
+            },
+            x: {
+              grid: {
+                color: '#222',
+              },
+              ticks: {
+                color: 'white',
+                font: { size: 14 }
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: 'white',
+                font: { size: 16 }
+              }
+            },
+            tooltip: {
+              enabled: true,
+              backgroundColor: '#0ea5e9',
+              titleFont: { size: 16, weight: 'bold' },
+              bodyFont: { size: 14 },
+            }
+          }
+        }
+      });
+      document.getElementById('transitChart').style.display = 'block';
+    }
+
+    document.getElementById('analyzeBtn').addEventListener('click', () => {
+      const rawData = document.getElementById('transitData').value.trim();
+
+      if (!rawData) {
+        alert('Please enter transit flux data.');
+        return;
+      }
+
+      const dataArr = rawData.split(/[\s,]+/);
+
+      const analysis = analyzeTransit(dataArr);
+      const resultDiv = document.getElementById('result');
+
+      if (!analysis.success) {
+        resultDiv.style.color = 'tomato';
+        resultDiv.textContent = analysis.message;
+        document.getElementById('transitChart').style.display = 'none';
+      } else {
+        resultDiv.style.color = '#38bdf8';
+        resultDiv.textContent = analysis.message;
+        const fluxValues = dataArr.map(Number);
+        plotChart(fluxValues);
+      }
+    });
+  </script>
+</body>
+</html>
