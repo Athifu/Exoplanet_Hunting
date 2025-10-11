@@ -1,40 +1,43 @@
-# Transit Method Exoplanet Project
+# Exoplanet Hunting via the Transit Method
 
-## NASA Space Apps Challenge 2025
 
-This project was developed by me and my friends for the NASA Space Apps Challenge 2025. It is a simple, minimal webpage designed to explain and demonstrate the transit method for detecting exoplanets.
+Vist Our Webpage : https://github.com/Athifu/Exoplanet_Hunting.git
+**A Submission for the NASA Space Apps Challenge 2025**
 
-## Overview
+## Abstract
 
-This project showcases the **transit method**, a technique used to discover exoplanets by observing the dimming of a star's light as a planet passes in front of it. Our goal was to create an accessible and visually appealing webpage that introduces this concept to a wide audience.
+This project is a web-based educational tool designed to introduce the public to the transit method of exoplanet detection. Developed by a team of friends for the NASA Space Apps Challenge 2025, this minimalist and visually engaging website explains how astronomers find planets orbiting other stars by measuring the dip in starlight as a planet transits its star.
 
-The webpage features a simple, space-themed design with animated planets to create an engaging user experience. The core of the project is an AI model (explained on the site) that is trained to calculate the "raw transit value" from the dip in a star's brightness, which helps in identifying the characteristics of an exoplanet.
+## Key Features
 
-## Features
+*   **Engaging Visuals**: The site uses a space-themed aesthetic with animated celestial bodies to create an immersive learning environment.
+*   **Clear Explanations**: The core concepts of the transit method are explained in simple, easy-to-understand language.
+*   **Interactive AI Component**: The project features a conceptual AI model designed to calculate a "raw transit value," demonstrating how technology aids in analyzing stellar data to identify exoplanet characteristics.
+*   **User-Friendly Interface**: A clean, single-page design ensures that the focus remains on the educational content.
 
--   **Minimalist Design**: A clean and focused design that is easy to navigate.
--   **Space-Themed Aesthetics**: A radial gradient background and animated planets create an immersive, cosmic atmosphere.
--   **Informative Content**: Clearly explains the transit method and the role of our AI model in exoplanet detection.
--   **Interactive Button**: A call-to-action button that directs users to a login page to "Calculate your raw transit value."
+## Project Structure
 
-## File Structure
+The application is organized into a few key files:
 
-The project consists of the following files:
+*   `index.html`: The main landing page containing the project's core information.
+*   `login.html` & `dashboard.html`: These files provide the user interface for interacting with the AI transit value calculator.
+*   `assets/`: This directory holds the project's stylesheets (`styles.css`) and JavaScript files (`main.js`).
 
--   `index.html`: The main landing page of the project.
--   `login.html`: A page for users to log in and access the AI calculation tool.
--   `dashboard.html`: The dashboard where users can interact with the AI model.
--   `assets/`: A directory containing the CSS and JavaScript files for the project.
+## Getting Started
 
-## How to Use
+To run this project locally:
 
-1.  **Clone or download the repository.**
-2.  **Open `index.html` in your web browser** to view the main page.
-3.  **Click the "Calculate your raw transit value" button** to navigate to the login page.
+1.  Clone or download the repository to your local machine.
+2.  Open the `index.html` file in any modern web browser.
+3.  Explore the content and click the **"Calculate your raw transit value"** button to proceed to the interactive portion of the site.
 
-## Technologies Used
+## Technology Stack
 
--   **HTML5**
--   **CSS3**
+This project was built using fundamental web technologies:
 
-This project was a collaborative effort, and we are proud to have participated in the NASA Space Apps Challenge.
+*   **HTML5**: For the structure and content of the webpage.
+*   **CSS3**: For styling, layout, and animations.
+
+## The Team
+
+This project was a collaborative effort by a passionate team of friends. We are proud to have contributed to the spirit of innovation and public engagement celebrated by the NASA Space Apps Challenge.
