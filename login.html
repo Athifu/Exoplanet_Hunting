@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplanet Research Login</title>
+    <style>
+        /* CSS Variables for Maintainability */
+        :root {
+            --primary-color: #2563eb;       /* Blue */
+            --primary-hover-color: #1e40af; /* Darker Blue */
+            --background-overlay: rgba(0, 0, 0, 0.85); /* Darker overlay for better contrast */
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            /* Optimized image link for better performance is ideal here, 
+               but using the provided one: */
+            background-image: url('https://assets.science.nasa.gov/dynamicimage/assets/science/astro/exo-explore/2023/09/h/holiday16x9.jpg?w=1600&h=900&fit=clip&crop=faces%2Cfocalpoint');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; /* Allows for centering elements like error messages */
+        }
+
+        .login-box {
+            background-color: var(--background-overlay);
+            padding: 2rem;
+            border-radius: 10px;
+            color: white;
+            width: 300px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .login-box h1 { /* Changed from h2 for semantic correctness */
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .login-box label {
+            display: block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box; /* Ensures padding is inside the width */
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-box button:hover {
+            background-color: var(--primary-hover-color);
+        }
+    </style>
+</head>
+<body>
+
+    <form class="login-box" onsubmit="handleLogin(event)">
+        <h1>Exoplanet Access Portal</h1> 
+
+        <label for="login-email">Email Address</label>
+        <input 
+            type="email" 
+            id="login-email" 
+            placeholder="researcher@nasa.gov" 
+            required 
+            autocomplete="username"
+        />
+
+        <label for="login-pass">Password</label>
+        <input 
+            type="password" 
+            id="login-pass" 
+            placeholder="Secure password" 
+            required 
+            autocomplete="current-password"
+        />
+        
+        <button>Login to Database</button>
+    </form>
+
+    <script>
+        function handleLogin(event) {
+            // Prevent the default form submission (page reload)
+            event.preventDefault(); 
+            
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-pass").value;
+
+            // Simple client-side validation
+            if (!email || !password) {
+                // Using alert() for this example, but a modal or in-form error message is better practice
+                alert("Authentication failed. Please enter both a valid email and password.");
+                return;
+            }
+
+            // In a real application, replace this with a secure 'fetch' call to your backend API
+            // For this static demo, it redirects immediately on valid input.
+            window.location.href = "dashboard.html"; 
+        }
+    </script>
+
+</body>
+</html>

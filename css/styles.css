@@ -1,0 +1,131 @@
+:root {
+    --primary-blue: #38bdf8;
+    --primary-hover: #0ea5e9;
+    --dark-bg: #0f172a;
+    --form-bg: #1e293b;
+    --text-light: #cbd5e1;
+    --text-dark: #000;
+    --input-color: #fff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--dark-bg); /* Use variable */
+    color: var(--input-color); /* Use variable */
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    gap: 2rem; /* Use gap for spacing instead of margin-right on img */
+}
+
+.login__img {
+    max-width: 300px;
+    width: 100%;
+    flex-shrink: 0; /* Prevents image from shrinking too much */
+}
+
+.login__form {
+    background: var(--form-bg); /* Use variable */
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    /* Added subtle animation for better user engagement */
+    transition: transform 0.3s ease;
+}
+
+.login__form:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2); /* Subtle glow on hover */
+}
+
+.login__title {
+    text-align: center;
+    margin-bottom: 1.5rem; /* Increased margin */
+    color: var(--primary-blue); /* Use variable */
+    font-weight: 600;
+}
+
+.login__box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem; /* Increased margin */
+}
+
+.login__icon {
+    font-size: 1.3rem; /* Slightly larger icon */
+    margin-right: 0.75rem; /* More space */
+    color: var(--primary-blue);
+}
+
+.login__input {
+    width: 100%;
+    padding: 0.5rem 0.25rem; /* Less vertical padding */
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--primary-blue); /* Thicker border for clarity */
+    color: var(--input-color);
+    box-shadow: none;
+    transition: border-bottom-color 0.2s ease-in-out;
+}
+
+.login__input:focus {
+    outline: none;
+    border-bottom-color: var(--primary-hover); /* Color change on focus */
+}
+
+.login__label {
+    /* This label style is now redundant if used inside .login__box 
+       without a proper label tag; it's better used as accessibility text. */
+    font-size: 0.75rem;
+    color: var(--text-light); /* Use variable */
+    position: absolute; /* Allows for creative placement/animation if needed */
+    pointer-events: none; /* Ensures clicking on the label passes to input */
+}
+
+.login__button {
+    width: 100%;
+    background-color: var(--primary-blue); /* Use variable */
+    color: var(--text-dark); /* Use variable */
+    border: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.login__button:hover {
+    background-color: var(--primary-hover); /* Use variable */
+}
+
+.login__button:active {
+    transform: scale(0.99); /* Click feedback */
+}
+
+.login__register {
+    text-align: center;
+    margin-top: 1.5rem; /* Increased margin */
+    font-size: 0.9rem;
+}
+
+/* --- RESPONSIVE OPTIMIZATION --- */
+@media (max-width: 768px) {
+    .login {
+        flex-direction: column; /* Stack vertically on smaller screens */
+        padding: 1rem; 
+        gap: 1.5rem;
+    }
+
+    .login__img {
+        display: none; /* Hide decorative image on small screens for performance/focus */
+    }
+}

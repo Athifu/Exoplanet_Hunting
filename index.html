@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transit Method Project</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(ellipse at bottom, #0f0c29 0%, #000000 100%);
+      color: white;
+      overflow: hidden;
+    }
+
+    .background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .planet {
+      position: absolute;
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+      opacity: 0.8;
+    }
+
+    .planet.one {
+      width: 100px;
+      height: 100px;
+      top: 10%;
+      left: 10%;
+      background: radial-gradient(circle, #5eead4, #2563eb);
+      box-shadow: 0 0 30px 10px rgba(94, 234, 212, 0.6);
+    }
+
+    .planet.two {
+      width: 80px;
+      height: 80px;
+      top: 60%;
+      right: 15%;
+      background: radial-gradient(circle, #a78bfa, #6d28d9);
+      box-shadow: 0 0 30px 15px rgba(167, 139, 250, 0.4);
+    }
+
+    .planet.three {
+      width: 60px;
+      height: 60px;
+      bottom: 15%;
+      left: 40%;
+      background: radial-gradient(circle, #f472b6, #be185d);
+      box-shadow: 0 0 25px 10px rgba(244, 114, 182, 0.4);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    header {
+      max-width: 900px;
+      margin: 3rem auto 2rem;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #38bdf8;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #e0f2fe;
+    }
+
+    .blue-box {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      box-shadow: 0 0 20px #60a5fa;
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 600px;
+      margin: 3rem auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .blue-box .small-planet {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #7dd3fc, #1e3a8a);
+      box-shadow: 0 0 15px #7dd3fc;
+      opacity: 0.7;
+    }
+
+    .small-planet.one { top: 10px; left: 20px; }
+    .small-planet.two { top: 30px; right: 30px; }
+    .small-planet.three { bottom: 20px; left: 40px; }
+
+    .calc-button {
+      background-color: #0ea5e9;
+      color: white;
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 2rem;
+      transition: background 0.3s ease;
+    }
+
+    .calc-button:hover {
+      background-color: #0284c7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background">
+    <div class="planet one"></div>
+    <div class="planet two"></div>
+    <div class="planet three"></div>
+  </div>
+
+  <header>
+    <h1>Transit Method Exoplanet Project</h1>
+    <p>
+      This project uses the <strong>transit method</strong> to analyze and detect exoplanets by measuring the dip in brightness as a planet passes in front of its host star. 
+      Our AI model is trained to calculate the <em>raw transit value</em> based on this dip, helping identify planet characteristics with higher accuracy and speed. 
+    </p>
+  </header>
+
+  <div class="blue-box">
+    <div class="small-planet one"></div>
+    <div class="small-planet two"></div>
+    <div class="small-planet three"></div>
+    <h2>Begin Your AI Calculation</h2>
+    <button class="calc-button" onclick="location.href='login.html'">
+      Calculate your raw transit value
+    </button>
+  </div>
+
+</body>
+</html>
